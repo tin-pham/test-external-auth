@@ -1,0 +1,27 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: simple-virtual-service
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - simple-gateway
+  http:
+    - match:
+        - uri:
+            exact: "/" # Route requests to "/" to hello-world
+      route:
+        - destination:
+            host: hello-world
+            port:
+              number: 8080
+
+    - match:
+        - uri:
+            prefix: "/mario" # Route requests starting with "/mario" to mario
+      route:
+        - destination:
+            host: mario
+            port:
+              number: 8082

@@ -2,14 +2,16 @@ apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
   name: simple-auth
+  namespace: default
 spec:
   selector:
     matchLabels:
-      app: hello-world # Apply this to hello-world app
+      app: istio-ingressgateway
+      istio: ingressgateway # Match the label of the ingress gateway
   action: CUSTOM
   provider:
     name: simple-auth
   rules:
     - to:
         - operation:
-            paths: ["/"]
+            paths: ["/", "/mario"]
