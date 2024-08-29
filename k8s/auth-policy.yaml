@@ -2,11 +2,9 @@ apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
   name: simple-auth
-  namespace: default
 spec:
   selector:
     matchLabels:
-      app: istio-ingressgateway
       istio: ingressgateway # Match the label of the ingress gateway
   action: CUSTOM
   provider:
