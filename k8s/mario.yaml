@@ -28,6 +28,6 @@ spec:
     spec:
       containers:
         - name: mario
-          image: minercreepmc/mario:v1.1
+          image: minercreepmc/mario:v1.2
           ports:
             - containerPort: 8082

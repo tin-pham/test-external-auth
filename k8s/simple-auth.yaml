@@ -25,6 +25,6 @@ spec:
     spec:
       containers:
         - name: simple-auth
-          image: minercreepmc/simple-auth:v1.2
+          image: minercreepmc/simple-auth:v1.3
           ports:
             - containerPort: 8081

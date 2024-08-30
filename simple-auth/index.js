@@ -2,7 +2,9 @@ const express = require("express");
 const app = express();
 const port = 8081;
 
+// Middleware to check token
 app.use((req, res, next) => {
+  console.log(`Received request with path: ${req.path}`); // Log the request path
   if (req.headers["token"]) {
     next();
   } else {
@@ -10,7 +12,9 @@ app.use((req, res, next) => {
   }
 });
 
-app.get("/", (req, res) => {
+// Handle all paths
+app.use((req, res) => {
+  console.log(`Path authorized: ${req.path}`); // Log authorized path
   res.send("Authorized");
 });
 

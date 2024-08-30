@@ -10,7 +10,9 @@ spec:
   http:
     - match:
         - uri:
-            exact: "/" # Route requests to "/" to hello-world
+            prefix: "/home"
+      rewrite:
+        uri: "/"
       route:
         - destination:
             host: hello-world
@@ -19,7 +21,9 @@ spec:
 
     - match:
         - uri:
-            prefix: "/mario" # Route requests starting with "/mario" to mario
+            prefix: "/mario"
+      rewrite:
+        uri: "/"
       route:
         - destination:
             host: mario
