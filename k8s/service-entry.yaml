@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: fs-ugc-ziicdn-net
+spec:
+  hosts:
+    - fs.ugc.ziicdn.net # External service host
+  ports:
+    - number: 443
+      name: https
+      protocol: HTTPS
+  resolution: DNS # The service will resolve using DNS
+  location: MESH_EXTERNAL

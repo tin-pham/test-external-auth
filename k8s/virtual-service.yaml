@@ -29,3 +29,28 @@ spec:
             host: mario
             port:
               number: 8082
+
+    # New rule to match and rewrite host for /0 path
+    - match:
+        - uri:
+            prefix: "/0"
+      rewrite:
+        authority: fs.ugc.ziicdn.net  # Rewriting the host
+        uri: "/zc-workspace0-sb/0"  # Rewrite the path to include zc-workspace0-sb
+      route:
+        - destination:
+            host: fs.ugc.ziicdn.net  # Destination external host
+            port:
+              number: 443  # HTTPS port for the external host
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: cloudfront-destination-rule
+spec:
+  host: fs.ugc.ziicdn.net
+  trafficPolicy:
+    tls:
+      mode: SIMPLE # Enable basic TLS
+      sni: fs.ugc.ziicdn.net # Optional: Include SNI if required by the upstream service
